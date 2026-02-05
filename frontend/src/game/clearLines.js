@@ -1,5 +1,17 @@
 export const clearLines = (board) => {
-  return board.filter(row => row.some(cell => cell === 0))
-              .unshift(...Array(board.length - board.filter(row => row.some(cell => cell === 0)).length)
-              .fill(Array(board[0].length).fill(0)));
+  let linesCleared = 0;
+
+  const newBoard = board.filter(row => {
+    if (row.every(cell => cell !== 0)) {
+      linesCleared++;
+      return false;
+    }
+    return true;
+  });
+
+  while (newBoard.length < board.length) {
+    newBoard.unshift(Array(board[0].length).fill(0));
+  }
+
+  return { newBoard, linesCleared };
 };

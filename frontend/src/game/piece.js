@@ -6,6 +6,7 @@ export const spawnPiece = () => {
 
     return{
         shape:tetrominos[randomKey],
+        type:randomKey,
         x:3,
         y:0
     };
